@@ -26,7 +26,9 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+#SECRET_KEY = os.environ.get('SECRET_KEY')
+from secrets import KEY
+SECRET_KEY = KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True#str(os.environ.get('DEBUG')) == "1"
@@ -94,14 +96,16 @@ WSGI_APPLICATION = 'codebattle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+from secrets import PGDATABASE,PGUSER,PGPASSWORD,PGHOST,PGPORT
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PGDATABASE'),
-        'USER':os.environ.get('PGUSER'),
-        'PASSWORD':os.environ.get('PGPASSWORD'),
-        'HOST':os.environ.get('PGHOST'),
-        'PORT':os.environ.get('PGPORT')
+        'NAME': PGDATABASE,
+        'USER':PGUSER,
+        'PASSWORD':PGPASSWORD,
+        'HOST':PGHOST,
+        'PORT':PGPORT
     }
 }
 
@@ -123,6 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+from secrets import test
 
 
 
